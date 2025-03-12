@@ -1,0 +1,25 @@
+.nav {
+    background-color: #333;
+    padding: 10px 0; /* Keep vertical padding but remove horizontal padding */
+    text-align: center;
+    width: 100%; /* Ensure it spans the full width */
+    position: fixed; /* Fix it to the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 20px;
+    font-size: 20px;
+}
+
+body, html {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 30px;  /* Remove default margins */
+    padding: 0; /* Remove default padding */
+    width: 100%; /* Ensure full width */
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UK Flood Monitoring API</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function filterStations() {
+            let showAll = document.getElementById("showAll").checked;
+            let table = document.getElementById("stationTable");
+            let rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {  // Skip table header
+                let warningCell = rows[i].getElementsByTagName("td")[2];
+                let warningText = warningCell.textContent.trim();  // Ensure warnings are properly read
+
+                if ((warningText.includes("No active flood warnings") || warningText === "[]") && !showAll) {
+                    rows[i].style.display = "none";
+                } else {
+                    rows[i].style.display = "";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="nav">
+        <a href="/">Home</a>
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/API/">API information</a>
+    </div>
+
+    <h1>UK Flood Monitoring API</h1>
+
+    <h2>Stations List</h2>
+    <p>Welcome! The table below is a quick view to see stations that have active flood warnings. Alternatively
+        you can display all stations by checking the box.
+    </p>
+
+    <!-- Checkbox to show/hide stations without warnings -->
+    <label>
+        <input type="checkbox" id="showAll" onchange="filterStations()"> Show all stations
+    </label>
+
+    <table id="stationTable">
+        <tr>
+            <th>Station ID</th>
+            <th>Station Name</th>
+            <th>Warnings</th>
+        </tr>
+        {% for station in stations %}
+        <tr>
+            <td><a href='/readings/{{ station.id }}'>{{ station.id }}</a></td>
+            <td>{{ station.name }}</td>
+            <td>{{ station.warnings | join(', ') }}</td>  <!-- Convert list to string -->
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        filterStations();  // Run on page load to hide stations with no warnings by default
+    </script>
+</body>
+</html>
