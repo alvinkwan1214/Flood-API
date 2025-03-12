@@ -51,13 +51,13 @@
         <tr>
             <td><a href='/readings/{{ station.id }}'>{{ station.id }}</a></td>
             <td>{{ station.name }}</td>
-            <td>{{ station.warnings | join(', ') }}</td>  <!-- Convert list to string -->
+            <td>{{ station.warnings | join(', ') }}</td>  
         </tr>
         {% endfor %}
     </table>
 
     <script>
-        filterStations();  // Run on page load to hide stations with no warnings by default
+        filterStations();  
     </script>
 </body>
 </html>

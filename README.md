@@ -19,3 +19,6 @@ python main.py
 
 **Open in Browser:**  
 It should be running on http://127.0.0.1:8000 by default!
+
+**Example**
+![Dashboard Screenshot](images/example.png)
